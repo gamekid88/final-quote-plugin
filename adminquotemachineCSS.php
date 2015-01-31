@@ -11,6 +11,7 @@ include "includes/quotemachineinstall.php";
 include "includes/settingsquotemachine.php";
 add_action('admin_menu', 'i_know_hooks');
 register_activation_hook( __FILE__, 'activate_eric_quote_next');
+add_action('init', 'check_update');
 add_shortcode('eric_table_quote', 'table_quote_func');
 add_shortcode('eric_random_revealed', 'random_quote_func');
 

@@ -38,6 +38,32 @@ Output: An array of quotes and authors
 	}//end if
 	
 	}//end function insertQuote
+        
+        
+        
+
+function check_update()
+{
+	$data = 1.0;
+	if ( ! get_option('quote_plugin_version'))
+
+	{
+
+		add_option('quote_plugin_version' , $data);
+
+	}
+
+	elseif (get_option('quote_plugin_version') != $data)
+
+	{
+
+		//run update code
+
+		update_option('quote_plugin_version' , $data);
+
+	}
+
+}
 	
 	
 		/*
