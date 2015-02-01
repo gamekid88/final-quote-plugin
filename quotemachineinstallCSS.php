@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /*
 Function: activate_eric_quote
 Desc: This function creates the table within the database in Wordpress. 

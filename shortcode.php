@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /*
 Function: random_quote_func
 Desc: This function creates the shortcode for my plugin. It pulls the results from the table 

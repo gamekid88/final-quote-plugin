@@ -1,5 +1,5 @@
 <?php
-
+if ( ! defined( 'ABSPATH' ) ) exit;
 function new_quote_machine()
 {
 	insert_quote();
@@ -123,19 +123,37 @@ Output: An array of quotes and authors
 		{ ?>
 			<tr>
 			<td><form action="" method="post"><input type="hidden" name="delete_quote" value="confirmation" /><input type="hidden" name="delete_quote_id" 
-			value="<?php echo $value["quote_id"]; ?>" /><input type="submit" value="Delete" /></form></td>
-			<td><?php echo $value["quote"];?></td>
-			<td><?php echo $value["author"]; ?></td>
+			value="<?php echo esc_html($value["quote_id"]); ?>" /><input type="submit" value="Delete" /></form></td>
+			<td><?php echo esc_html($value["quote"]);?></td>
+			<td><?php echo esc_html(value["author"]); ?></td>
 			</tr>
 			
 
-<?php	} ?> 
+        <?php	} ?> 
 	</table>
-
+                
+        <?php if ( current_user_can('moderate_comments') )
+        {
+        
+        }
+        else
+        {
+            echo "This user is not allowed to moderate comments";
+        }
+        ?>
+}
 		<form action="" method="post">
 		Please enter a quote: <input type="text" name="savedQuote"><br />   
 		Pease enter the author: <input type="text" name="savedAuthor"><br />
 		<input type="submit" value="Add Quote">
+                <?php wp_nonce_field('nonce_check','nonce_field'); ?>
+                <?php
+                if (! wp_verify_nonce( $_POST['nonce_field'], 'nonce_check'))
+                {
+                    echo "Security Alert!";
+                }
+                ?>
+                </form>
 		<?php 
 		
   }// end function load_quote

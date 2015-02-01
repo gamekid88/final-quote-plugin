@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /*
 Plugin Name: Eric's Quote Machine Next with CSS
 Description: A plugin created to expand a little beyond the first quote plugin with added delete and list functionality.
