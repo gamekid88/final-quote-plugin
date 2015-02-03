@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 function new_quote_machine()
 {
-	wp_enqueue_script('eric_plugin_script', plugins_url( 'javascript/main_js.js', __FILE__ ))
+	wp_enqueue_script('eric_plugin_script', plugins_url( 'javascript/main_js.js', __FILE__ ));
 	insert_quote();
 	update_quote_table();
 	load_quote();
@@ -125,6 +125,7 @@ Output: An array of quotes and authors
 			<tr>
 			<td><form action="" method="post"><input type="hidden" name="delete_quote" value="confirmation" /><input type="hidden" name="delete_quote_id" 
 			value="<?php echo esc_html($value["quote_id"]); ?>" /><input type="submit" value="Delete" /></form></td>
+                        <td><button onclick="edit_box();">Edit</button></td>
 			<td><?php echo esc_html($value["quote"]);?></td>
 			<td><?php echo esc_html(value["author"]); ?></td>
 			</tr>
@@ -158,4 +159,29 @@ Output: An array of quotes and authors
 		<?php 
 		
   }// end function load_quote
+  
+        function edit_box()
+        {?>
+
+          <div id="dialog" title="Edit Quote">
+              
+        
+
+
+        </div> 
+  
+        <?php
+            
+            
+            
+            
+        }//end edit_box
+  
+  
+  
+  
+  
+  
+  
+  
 		?>
