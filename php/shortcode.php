@@ -53,36 +53,6 @@ function random_quote_func($atts)
 
 }//end random_quote_func
 
-
-function my_css ()
-{
-		$main_css = "<style>
-		.eric_container
-		{
-			color:orange;
-			font-size: 32px;
-			text-align: center;
-			position: relative;
-			line-height: 1.2;
-			border: 1px solid black;
-			border-color: 220,220,220;
-			padding: 24px 60px;
-			margin: 0px 60px;
-			min-width: 250px;
-			margin-bottom: 18px;
-					
-		}
-		.eric_author
-		{
-			font-size: 18px;
-			text-align: right;
-			padding: 4px;
-			font-style: italic;
-			display: block;
-			color: gray;
-		}
-			
-		</style>";
-	return $main_css;	
-}
 ?>
+
+
