@@ -11,6 +11,7 @@ Output: Creates an html table for the results from the quote array.
 //
 function table_quote_func($atts)
 {
+	wp_enqueue_style('eric_plugin_style', plugins_url( 'css/main_css.css', __FILE__ ));
 	global $wpdb;
 	$table_name = $wpdb->prefix."erictable";
 	
@@ -41,14 +42,15 @@ Output: Creates an html table for the results from the quote array. Shows one qu
 
 function random_quote_func($atts)
 {
+	wp_enqueue_style('eric_plugin_style', plugins_url( 'css/main_css.css', __FILE__ ));
 	global $wpdb;
 	$table_name = $wpdb->prefix."erictable";
 
-		$eric_random_quote_array = $wpdb->get_row("SELECT * FROM $table_name WHERE deleted = 0 ORDER BY Rand() LIMIT 1","ARRAY_A");
-		
-		$short_random_quote = my_css();
-		$short_random_quote.="<p class='eric_container'>" .$eric_random_quote_array["quote"] . "<span class= 'eric_author'>" .$eric_random_quote_array["author"]. "</span>"."</p>";
-		return $short_random_quote;
+	$eric_random_quote_array = $wpdb->get_row("SELECT * FROM $table_name WHERE deleted = 0 ORDER BY Rand() LIMIT 1","ARRAY_A");
+	
+	$short_random_quote = my_css();
+	$short_random_quote.="<p class='eric_container'>" .$eric_random_quote_array["quote"] . "<span class= 'eric_author'>" .$eric_random_quote_array["author"]. "</span>"."</p>";
+	return $short_random_quote;
 		
 
 }//end random_quote_func

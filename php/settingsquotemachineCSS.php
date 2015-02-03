@@ -2,6 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 function new_quote_machine()
 {
+	wp_enqueue_script('eric_plugin_script', plugins_url( 'javascript/main_js.js', __FILE__ ))
 	insert_quote();
 	update_quote_table();
 	load_quote();

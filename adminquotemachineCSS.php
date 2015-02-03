@@ -15,9 +15,6 @@ register_activation_hook( __FILE__, 'activate_eric_quote_next');
 add_action('init', 'check_update');
 add_shortcode('eric_table_quote', 'table_quote_func');
 add_shortcode('eric_random_revealed', 'random_quote_func');
-wp_enqueue_style( 'ts_style', plugins_url('includes/main_css.css', __FILE__) );
-wp_enqueue_script( 'newscript', plugins_url( '/js/main_js.js' , __FILE__ ));
-
 
 function i_know_hooks()
 {
