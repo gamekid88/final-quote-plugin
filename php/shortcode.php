@@ -22,7 +22,7 @@ function table_quote_func($atts)
 	 foreach ($eric_quote_array as $value) 
  	{ 	
  		
-		$short_display_quote.="<p class='eric_container'>" .$value["quote"] . "<span class= 'eric_author'>" .$value["author"]. "</span>"."</p>";			
+		$short_display_quote.="<p class='eric_container'>" .esc_attr($value["quote"]) . "<span class= 'eric_author'>" .esc_attr($value["author"]). "</span>"."</p>";			
 	}//end for each loop
 		
 		return $short_display_quote;
@@ -49,7 +49,7 @@ function random_quote_func($atts)
 	$eric_random_quote_array = $wpdb->get_row("SELECT * FROM $table_name WHERE deleted = 0 ORDER BY Rand() LIMIT 1","ARRAY_A");
 	
 	$short_random_quote = my_css();
-	$short_random_quote.="<p class='eric_container'>" .$eric_random_quote_array["quote"] . "<span class= 'eric_author'>" .$eric_random_quote_array["author"]. "</span>"."</p>";
+	$short_random_quote.="<p class='eric_container'>" .esc_attr($eric_random_quote_array["quote"]) . "<span class= 'eric_author'>" .esc_attr($eric_random_quote_array["author"]). "</span>"."</p>";
 	return $short_random_quote;
 		
 
