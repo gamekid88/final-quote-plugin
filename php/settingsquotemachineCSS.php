@@ -2,11 +2,13 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 function new_quote_machine()
 {
-	wp_enqueue_script('eric_plugin_script', plugins_url( 'javascript/main_js.js', __FILE__ ));
-	insert_quote();
-	update_quote_table();
-	load_quote();
-
+	if ( current_user_can('moderate_comments') )
+    	{
+		wp_enqueue_script('eric_plugin_script', plugins_url( 'javascript/main_js.js', __FILE__ ));
+		insert_quote();
+		update_quote_table();
+		load_quote();
+    	}
 }
 
 /*
@@ -16,65 +18,43 @@ Desc: This is the function that takes the variables from the text boxes converts
 Parameters: savedQuote, savedAuthor, delete
 Output: An array of quotes and authors 
 */
-
-
-if ( current_user_can('moderate_comments') )
-    {
-                
-
-    wp_nonce_field('nonce_check','nonce_field');  
-    if (wp_verify_nonce( $_POST['nonce_field'], 'nonce_check'))
-     {            
-               
-                
-                
 	function insert_quote()
 	{	
 	
             if(isset($_POST['savedQuote']) AND (isset($_POST['savedAuthor'])))	
             {
-		global $wpdb;
-		$table_name = $wpdb->prefix."erictable";
-		$quote = sanitize_text_field($_POST['savedQuote']);
-		$author = sanitize_text_field($_POST['savedAuthor']);
-		$delete = 0;
+            	if (wp_verify_nonce( $_POST['nonce_field'], 'nonce_check'))
+     		{ 
+			global $wpdb;
+			$table_name = $wpdb->prefix."erictable";
+			$quote = sanitize_text_field($_POST['savedQuote']);
+			$author = sanitize_text_field($_POST['savedAuthor']);
+			$delete = 0;
 	
-
-		$wpdb->insert( 
-		$table_name, 
-		array( 
-		'quote' => $quote, 
-		'author' =>$author,
-		'deleted' =>$delete
-		));
+			$wpdb->insert( 
+			$table_name, 
+			array( 
+			'quote' => $quote, 
+			'author' =>$author,
+			'deleted' =>$delete
+			));
+     		}
             }//end if
 	
 	}//end function insertQuote
-        
-     }//end nonce check   
         
 
 function check_update()
 {
 	$data = 1.0;
 	if ( ! get_option('quote_plugin_version'))
-
-            {
-
+	{
 		add_option('quote_plugin_version' , $data);
-
-            }
-
+	}
 	elseif (get_option('quote_plugin_version') != $data)
-
-            {
-
-		//run update code
-
-		update_option('quote_plugin_version' , $data);
-
-            }
-
+        {
+        	update_option('quote_plugin_version' , $data);
+	}
 }
 	
 	
@@ -85,9 +65,7 @@ Desc: This is a function that updates the table when the delete button is presse
 Parameters: delete_quote, delete_quote_id
 Output: An updated table of quotes and authors 
 */
-    wp_nonce_field('nonce_check','nonce_field');  
-    if (wp_verify_nonce( $_POST['nonce_field'], 'nonce_check'))
-     {   
+       
 	
 	function update_quote_table ()
 	{
@@ -96,38 +74,36 @@ Output: An updated table of quotes and authors
 	
 		if(isset($_POST['delete_quote']))
 		{
-			$deleted_quote_id = sanitize_text_field($_POST["delete_quote_id"]);
-
-			$wpdb->update( 
-			$table_name, 
-			array( 
-			'deleted' => 1 
-			), 
-			array( 'quote_id' => $deleted_quote_id ),  
-			array( 
-			'%d' 
-			), 
-			array( '%d' ) 
-			);
-		
+			if (wp_verify_nonce( $_POST['nonce_field'], 'nonce_check'))
+     			{
+				$deleted_quote_id = intval($_POST["delete_quote_id"]);
+	
+				$wpdb->update( 
+				$table_name, 
+				array( 
+				'deleted' => 1 
+				), 
+				array( 'quote_id' => $deleted_quote_id ),  
+				array( 
+				'%d' 
+				), 
+				array( '%d' ) 
+				);
+     			}
 		
 		}//end if				
 	
 	}//end update_quote_table	
 	
-     }//end nonce check
 	/*
 Function: load_quote
 Desc: This is a function that loads the quotes and authors from the database table into an html table. 
 Parameters: savedQuote, savedAuthor, delete
 Output: An array of quotes and authors 
 */
-    wp_nonce_field('nonce_check','nonce_field');  
-    if (wp_verify_nonce( $_POST['nonce_field'], 'nonce_check'))
-     {   
-	
+
 	function load_quote()
- {
+ 	{
 	global $wpdb;
 	$table_name = $wpdb->prefix."erictable";
 	
@@ -138,14 +114,17 @@ Output: An array of quotes and authors
 	<?php foreach ($eric_quote_array as $value) 
 		{ ?>
 			<tr>
-			<td><form action="" method="post"><input type="hidden" name="delete_quote" value="confirmation" /><input type="hidden" name="delete_quote_id" 
-			value="<?php echo esc_attr($value["quote_id"]); ?>" /><input type="submit" value="Delete" /></form></td>
+			<td>
+				<form action="" method="post"><input type="hidden" name="delete_quote" value="confirmation" />
+					<input type="hidden" name="delete_quote_id" value="<?php echo esc_attr($value["quote_id"]); ?>" />
+					<input type="submit" value="Delete" />
+					<?php wp_nonce_field('nonce_check','nonce_field'); ?>
+				</form>
+			</td>
                         <td><button onclick="edit_box();">Edit</button></td>
-			<td><?php echo esc_attr($value["quote"]);?></td>
-			<td><?php echo esc_attr(value["author"]); ?></td>
+			<td><?php echo esc_html($value["quote"]);?></td>
+			<td><?php echo esc_html(value["author"]); ?></td>
 			</tr>
-			
-
         <?php	} ?> 
 	</table>
                 
@@ -156,17 +135,10 @@ Output: An array of quotes and authors
 		Pease enter the author: <input type="text" name="savedAuthor"><br />
 		<input type="submit" value="Add Quote">
                 <?php wp_nonce_field('nonce_check','nonce_field'); ?>
-                <?php
-                if (! wp_verify_nonce( $_POST['nonce_field'], 'nonce_check'))
-                {
-                    echo "Security Alert!";
-                }
-                ?>
                 </form>
 		<?php 
 		
         }// end function load_quote
-     }//end nonce check
      
      
         function edit_box()
