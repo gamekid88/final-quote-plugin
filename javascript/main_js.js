@@ -6,6 +6,21 @@
 
  $(function () {
 
-    $( "#dialog" ).dialog();
+    $( "#dialog" ).dialog({
+       display: none,
+       buttons: {
+            Ok: function() {
+                $(this).dialog("close");
+                }
+            }    
+        });
+    });     
+    
+    
+    
+    function show_popup(id)
+    {
 
-  });
+        $( "#".id ).dialog();
+
+    }

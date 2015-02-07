@@ -121,7 +121,13 @@ Output: An array of quotes and authors
 					<?php wp_nonce_field('nonce_check','nonce_field'); ?>
 				</form>
 			</td>
-                        <td><button onclick="edit_box();">Edit</button></td>
+                        <td><button onclick="show_popup(<?php quote_id?>);">Edit</button></td>
+                        <td><div id="dialog" title="Basic dialog">
+
+                        <p>This is the coolest quote by the coolest guy..Eric!</p>
+
+
+                         </div></td> 
 			<td><?php echo esc_html($value["quote"]);?></td>
 			<td><?php echo esc_html(value["author"]); ?></td>
 			</tr>
@@ -142,27 +148,17 @@ Output: An array of quotes and authors
      
      
         function edit_box()
-        {?>
-
-          <div id="dialog" title="Edit Quote">
-              
+        {
+            
+          
+            
+            
+            
+            
         
-
-
-        </div> 
-  
-        
-            
-            
-            
-            
-      <?php  
          }//end edit_box
          
-          }
-        else
-        {
-            echo "This user is not allowed to moderate comments";
-        }
+          
+        
       
       ?>
