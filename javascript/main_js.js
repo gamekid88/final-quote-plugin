@@ -4,23 +4,10 @@
  * and open the template in the editor.
  */
 
- $(function () {
-
-    $( "#dialog" ).dialog({
-       display: none,
-       buttons: {
-            Ok: function() {
-                $(this).dialog("close");
-                }
-            }    
-        });
-    });     
-    
-    
     
     function show_popup(id)
     {
 
-        $( "#".id ).dialog();
+        $( "#dialog".id ).dialog();
 
     }

@@ -108,7 +108,7 @@ Output: An array of quotes and authors
 	$table_name = $wpdb->prefix."erictable";
 	
 	 $eric_quote_array = $wpdb->get_results("SELECT * FROM $table_name WHERE deleted = 0","ARRAY_A");?>
- 
+         
 	<h2>Quotes and their Authors</h2>
 	<table>
 	<?php foreach ($eric_quote_array as $value) 
@@ -121,15 +121,19 @@ Output: An array of quotes and authors
 					<?php wp_nonce_field('nonce_check','nonce_field'); ?>
 				</form>
 			</td>
-                        <td><button onclick="show_popup(<?php quote_id?>);">Edit</button></td>
-                        <td><div id="dialog" title="Basic dialog">
+                <td><button onclick="show_popup(<?php echo $value["quote_id"]; ?>">Edit</button></td>
+                        <div style =" display:none;" id="dialog<?php echo$value["quote_id"]; ?>" title="Edit Quote">
+                          
+                            <form action="" method="post">
+                                Please edit the quote: <input type= "text" name="editQuote" value= "<?php echo $value["quote"]; ?>" ><br />   
+                                Please edit the author: <input type= "text" name="editAuthor" value="<?php echo $value["author"];?>"><br />
+                            <input type="submit" value="Submit Edit">
+                            </form>
 
-                        <p>This is the coolest quote by the coolest guy..Eric!</p>
 
-
-                         </div></td> 
+                         </div> 
 			<td><?php echo esc_html($value["quote"]);?></td>
-			<td><?php echo esc_html(value["author"]); ?></td>
+			<td><?php echo esc_html($value["author"]); ?></td>
 			</tr>
         <?php	} ?> 
 	</table>
@@ -138,7 +142,7 @@ Output: An array of quotes and authors
 
 		<form action="" method="post">
 		Please enter a quote: <input type="text" name="savedQuote"><br />   
-		Pease enter the author: <input type="text" name="savedAuthor"><br />
+		Please enter the author: <input type="text" name="savedAuthor"><br />
 		<input type="submit" value="Add Quote">
                 <?php wp_nonce_field('nonce_check','nonce_field'); ?>
                 </form>
@@ -146,18 +150,7 @@ Output: An array of quotes and authors
 		
         }// end function load_quote
      
-     
-        function edit_box()
-        {
-            
-          
-            
-            
-            
-            
-        
-         }//end edit_box
-         
+   
           
         
       
