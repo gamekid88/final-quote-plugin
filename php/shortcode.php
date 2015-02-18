@@ -17,8 +17,6 @@ function table_quote_func($atts)
 	
  	$eric_quote_array = $wpdb->get_results("SELECT * FROM $table_name WHERE deleted = 0","ARRAY_A");
 		
-	
-	 $short_display_quote= my_css();
 	 foreach ($eric_quote_array as $value) 
  	{ 	
  		
@@ -47,13 +45,54 @@ function random_quote_func($atts)
 	$table_name = $wpdb->prefix."erictable";
 
 	$eric_random_quote_array = $wpdb->get_row("SELECT * FROM $table_name WHERE deleted = 0 ORDER BY Rand() LIMIT 1","ARRAY_A");
-	
-	$short_random_quote = my_css();
+
 	$short_random_quote.="<p class='eric_container'>" .esc_html($eric_random_quote_array["quote"]) . "<span class= 'eric_author'>" .esc_html($eric_random_quote_array["author"]). "</span>"."</p>";
 	return $short_random_quote;
 		
 
 }//end random_quote_func
+
+
+
+function group_quote_func($atts)
+{
+        wp_enqueue_style('eric_plugin_style', plugins_url( 'css/main_css.css', __FILE__ ));
+	global $wpdb;
+	$table_name = $wpdb->prefix."erictable";
+        
+        extract(shortcode_atts(array(
+        'group_name'=> '0'    
+        ), $atts));
+                
+        sanatize_text_field($group_name);
+        
+       
+        $eric_group_quote_array = $wpdb->get_results("SELECT * FROM $table_name WHERE deleted = 0 AND WHERE author = group_name","ARRAY_A");
+        
+        
+        foreach ($eric_group_quote_array as $value)
+        {
+        $short_group_quote.="<p class='eric_container'>" .esc_html($value["quote"]) . "<span class= 'eric_author'>" .esc_html($value["author"]). "</span>"."</p>";
+        }
+        return $short_group_quote;
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ?>
 

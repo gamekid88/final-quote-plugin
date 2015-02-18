@@ -123,11 +123,16 @@ Output: An array of quotes and authors
 			</td>
                 <td><button onclick="show_popup(<?php echo $value["quote_id"]; ?>">Edit</button></td>
                         <div style =" display:none;" id="dialog<?php echo$value["quote_id"]; ?>" title="Edit Quote">
-                          
+                                 <form action="" method="post"><input type="hidden" name="hid_edit_quote" value="confirmation" />
+					<input type="hidden" name="hid_edit_quote_id" value="<?php echo esc_attr($value["quote_id"]); ?>" />
+                            
+                            
+                            
+                            
                             <form action="" method="post">
                                 Please edit the quote: <input type= "text" name="editQuote" value= "<?php echo $value["quote"]; ?>" ><br />   
                                 Please edit the author: <input type= "text" name="editAuthor" value="<?php echo $value["author"];?>"><br />
-                            <input type="submit" value="Submit Edit">
+                            <input type="submit" name="submit_edit" value="Submit Edit">
                             </form>
 
 
@@ -150,8 +155,49 @@ Output: An array of quotes and authors
 		
         }// end function load_quote
      
-   
+       function update_edit_quote()
+
+     {
+
+        global $wpdb;
+
+        $table_name = $wpdb->prefix."erictable";
+
+        if (isset($_POST["hid_edit_quote_id"]))
+
+        {
+
+            $quote_id = intval($_POST["hid_edit_quote_id"]);
+            $quote = sanitize_text_field($_POST["editQuote"]);
+            $author = sanitize_text_field($_POST["editAuthor"]);
           
+            $results = $wpdb->update(
+                         $table_name,
+                            array(
+                            'quote' => $quote,
+                            'author' => $author
+                            ),
+                            array(
+                            'quote_id' => $quote_id
+                            ),
+                            array(
+                            '%s',
+                            '%s'
+                            ),
+                            array(
+                            '%d'
+                            )
+                        );
+
+            if ($results != false)
+            {
+              echo "Quote has been updated!";
+            }
+
+        }
+
+    }//end function update_edit_quote
+
         
       
       ?>
