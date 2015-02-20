@@ -64,11 +64,10 @@ function group_quote_func($atts)
         'group_name'=> '0'    
         ), $atts));
                 
-        sanatize_text_field($group_name);
+        $group_name_var = sanatize_text_field('group_name');
         
-       
-        $eric_group_quote_array = $wpdb->get_results("SELECT * FROM $table_name WHERE deleted = 0 AND WHERE author = group_name","ARRAY_A");
         
+        $eric_group_quote_array = $wpdb->get_results($wpdb->prepare("SELECT * FROM  WHERE $table_name author=%s", $group_name_var));
         
         foreach ($eric_group_quote_array as $value)
         {
