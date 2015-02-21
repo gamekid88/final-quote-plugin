@@ -1,4 +1,16 @@
 <?php
+/*
+
+ * Plugin Name: Quote Machine   
+
+ * Author: Eric Rathmann
+
+ * Text Domain: quote-machine
+
+ * Domain Path: /languages
+
+ */
+
 if ( ! defined( 'ABSPATH' ) ) exit;
 function new_quote_machine()
 {
