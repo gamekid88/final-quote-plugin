@@ -1,0 +1,37 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 2, 2015, 7:15:30 PM
+    Author     : Eric
+*/
+
+    
+		.eric_container
+		{
+			color:orange;
+			font-size: 32px;
+			text-align: center;
+			position: relative;
+			line-height: 1.2;
+			border: 1px solid black;
+			border-color: 220,220,220;
+			padding: 24px 60px;
+			margin: 0px 60px;
+			min-width: 250px;
+			margin-bottom: 18px;
+					
+		}
+		.eric_author
+		{
+			font-size: 18px;
+			text-align: right;
+			padding: 4px;
+			font-style: italic;
+			display: block;
+			color: gray;
+		}
+			
+	
