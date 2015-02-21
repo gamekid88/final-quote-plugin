@@ -8,8 +8,8 @@ Version: 1.0
 Author: Eric Rathmann
 */
 include "php/shortcode.php";
-include "quotemachineinstall.php";
-include "php/settingsquotemachine.php";
+include "quotemachineinstallCSS.php";
+include "php/settingsquotemachineCSS.php";
 add_action('admin_menu', 'i_know_hooks');
 register_activation_hook( __FILE__, 'activate_eric_quote_next');
 add_action('init', 'check_update');
