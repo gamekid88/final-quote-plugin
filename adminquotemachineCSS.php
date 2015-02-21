@@ -7,9 +7,9 @@ Description: A plugin created to expand a little beyond the first quote plugin w
 Version: 1.0
 Author: Eric Rathmann
 */
-include "includes/shortcode.php";
-include "includes/quotemachineinstall.php";
-include "includes/settingsquotemachine.php";
+include "php/shortcode.php";
+include "quotemachineinstall.php";
+include "php/settingsquotemachine.php";
 add_action('admin_menu', 'i_know_hooks');
 register_activation_hook( __FILE__, 'activate_eric_quote_next');
 add_action('init', 'check_update');
