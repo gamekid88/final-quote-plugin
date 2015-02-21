@@ -8,6 +8,7 @@ function new_quote_machine()
 		insert_quote();
 		update_quote_table();
 		load_quote();
+		update_edit_quote();
     	}
 }
 
@@ -123,13 +124,9 @@ Output: An array of quotes and authors
 			</td>
                 <td><button onclick="show_popup(<?php echo $value["quote_id"]; ?>">Edit</button></td>
                         <div style =" display:none;" id="dialog<?php echo$value["quote_id"]; ?>" title="Edit Quote">
-                                 <form action="" method="post"><input type="hidden" name="hid_edit_quote" value="confirmation" />
+                            <form action="" method="post"><input type="hidden" name="hid_edit_quote" value="confirmation" />
 					<input type="hidden" name="hid_edit_quote_id" value="<?php echo esc_attr($value["quote_id"]); ?>" />
-                            
-                            
-                            
-                            
-                            <form action="" method="post">
+                         
                                 Please edit the quote: <input type= "text" name="editQuote" value= "<?php echo $value["quote"]; ?>" ><br />   
                                 Please edit the author: <input type= "text" name="editAuthor" value="<?php echo $value["author"];?>"><br />
                             <input type="submit" name="submit_edit" value="Submit Edit">
