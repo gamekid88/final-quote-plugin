@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
   */
 function table_quote_func($atts)
 {
-	wp_enqueue_style('eric_plugin_style', plugins_url( 'css/main_css.css', __FILE__ ));
+	wp_enqueue_style('eric_plugin_style', plugins_url( '../css/main_css.css', __FILE__ ));
 	global $wpdb;
 	$table_name = $wpdb->prefix."erictable";
 	
@@ -40,7 +40,7 @@ function table_quote_func($atts)
 */
 function random_quote_func($atts)
 {
-	wp_enqueue_style('eric_plugin_style', plugins_url( 'css/main_css.css', __FILE__ ));
+	wp_enqueue_style('eric_plugin_style', plugins_url( '../css/main_css.css', __FILE__ ));
 	global $wpdb;
 	$table_name = $wpdb->prefix."erictable";
 
@@ -60,7 +60,7 @@ function random_quote_func($atts)
 */
 function group_quote_func($atts)
 {
-	wp_enqueue_style('eric_plugin_style', plugins_url( 'css/main_css.css', __FILE__ ));
+	wp_enqueue_style('eric_plugin_style', plugins_url( '../css/main_css.css', __FILE__ ));
 	global $wpdb;
 	$table_name = $wpdb->prefix."erictable";
 	
