@@ -1,11 +1,26 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
-/*
-Function: activate_eric_quote
-Desc: This function creates the table within the database in Wordpress. 
-Parameters: None
-Output: A table within the datebase to be used.
+/**
+ * 
+ *
+
+ * @package     EQM
+ * @copyright   Copyright (c) 2014, Eric Rathmann
+ * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since       1.0
+
 */
+
+/**
+  * Creates the table to be used in this plugin.
+  *
+  * Creates the table with three columns. 
+  *
+  * @since 2.0
+
+*/
+
+
 function activate_eric_quote_next ()
 {
 global $wpdb;
