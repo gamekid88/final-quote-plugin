@@ -1,39 +1,31 @@
 /**
- * 
- *
-
  * @package     EQM
  * @copyright   Copyright (c) 2014, Eric Rathmann
  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since       2.0
-
 */
+.eric_container
+{
+	color:orange;
+	font-size: 32px;
+	text-align: center;
+	position: relative;
+	line-height: 1.2;
+	border: 1px solid black;
+	border-color: 220,220,220;
+	padding: 24px 60px;
+	margin: 0px 60px;
+	min-width: 250px;
+	margin-bottom: 18px;
+}
+.eric_author
+{
+	font-size: 18px;
+	text-align: right;
+	padding: 4px;
+	font-style: italic;
+	display: block;
+	color: gray;
+}
 
-
-    
-		.eric_container
-		{
-			color:orange;
-			font-size: 32px;
-			text-align: center;
-			position: relative;
-			line-height: 1.2;
-			border: 1px solid black;
-			border-color: 220,220,220;
-			padding: 24px 60px;
-			margin: 0px 60px;
-			min-width: 250px;
-			margin-bottom: 18px;
-					
-		}
-		.eric_author
-		{
-			font-size: 18px;
-			text-align: right;
-			padding: 4px;
-			font-style: italic;
-			display: block;
-			color: gray;
-		}
-			
 	
