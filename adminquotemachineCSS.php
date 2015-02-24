@@ -3,12 +3,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 /**
 * Plugin Name: Eric's New Quote Machine
 * Description: This plugin will allow you to enter a quote and author into a form and then it will display everything in a database.
- * There is also added delete and edit functionality to manipulate the quotes once they have been entered.
+* There is also added delete and edit functionality to manipulate the quotes once they have been entered.
 * Version: 2.0
 * Author: Eric Rathmann
 * Author URI: http://www.mylocalwebstop.com/
 * Plugin URI: http://www.mylocalwebstop.com/
-* Text Domain: quote-machine
+* Text Domain: my-plugin
 * Domain Path: /languages
 *
 * @author Eric Rathmann
@@ -29,9 +29,7 @@ add_shortcode('group_quote', 'group_quote_func');
 
 
 /**
-  * Adds the admin file to the side. an allows rest of the plugin to work
-  *
-  * Allows the plugin to work properly
+  * Adds the admin file to the side and allows rest of the plugin to work
   *
   * @since 2.0
 
@@ -40,26 +38,20 @@ function i_know_hooks()
 {
 	if (function_exists('add_menu_page'))
 	{
-		add_menu_page('Erics New Quote Machine', 'Erics New Quote Machine', 'moderate_comments', __FILE__, 'new_quote_machine');
+         add_menu_page('Erics New Quote Machine', 'Erics New Quote Machine', 'moderate_comments', __FILE__, 'new_quote_machine');
 	}
 }
 
 
 /**
-
   * This function loads the plugin domain so that it can be used in translation.
   *
   * @since 2.0
- 
-*/
-function my_plugin_load_plugin_textdomain() {
-
-    load_plugin_textdomain( 'my-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
-
+ */
+function my_plugin_load_plugin_textdomain()
+{
+        load_plugin_textdomain( 'my-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
-
-
-
 
 
 ?>

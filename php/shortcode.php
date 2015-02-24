@@ -29,11 +29,10 @@ function table_quote_func($atts)
 		
 	 foreach ($eric_quote_array as $value) 
  	{ 	
- 		
-		$short_display_quote.="<p class='eric_container'>" .esc_html($value["quote"]) . "<span class= 'eric_author'>" .esc_html($value["author"]). "</span>"."</p>";			
+            $short_display_quote.="<p class='eric_container'>" .esc_html($value["quote"]) . "<span class= 'eric_author'>" .esc_html($value["author"]). "</span>"."</p>";			
 	}//end for each loop
 		
-		return $short_display_quote;
+	return $short_display_quote;
  
 
 }//end table_quote_func
@@ -41,13 +40,13 @@ function table_quote_func($atts)
 
 
 /**
-  * This shortcode displays a random quote for the website user.
-  *
-  * @param array $atts Used to return the array to the website.
-  *
-  * @since 2.0
- * 
- */
+* This shortcode displays a random quote for the website user.
+*
+* @param array $atts Used to return the random quote to the website.
+*
+* @since 2.0
+* 
+*/
 
 function random_quote_func($atts)
 {
@@ -63,16 +62,15 @@ function random_quote_func($atts)
 
 }//end random_quote_func
 
+
 /**
-  * This shortcode returns all quotes/authors by a certain author
-  *
-  * @param array $atts Used to return the array for displaying. 
-  *
-  * @since 2.0
- * 
- */
-
-
+* This shortcode returns all quotes/authors by a certain author
+*
+* @param array $atts Used to return the array for displaying. 
+*
+* @since 2.0
+* 
+*/
 
 function group_quote_func($atts)
 {
@@ -91,7 +89,7 @@ function group_quote_func($atts)
         
         foreach ($eric_group_quote_array as $value)
         {
-        $short_group_quote.="<p class='eric_container'>" .esc_html($value["quote"]) . "<span class= 'eric_author'>" .esc_html($value["author"]). "</span>"."</p>";
+            $short_group_quote.="<p class='eric_container'>" .esc_html($value["quote"]) . "<span class= 'eric_author'>" .esc_html($value["author"]). "</span>"."</p>";
         }
         return $short_group_quote;
     
