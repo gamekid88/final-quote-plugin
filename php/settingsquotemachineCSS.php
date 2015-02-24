@@ -25,7 +25,7 @@ function new_quote_machine()
 		wp_enqueue_script( 'jquery-ui-core' );
 		wp_enqueue_script( 'jquery-ui-dialog' );
 		wp_enqueue_script( 'jquery-ui-button' );
-		wp_enqueue_script('eric_plugin_script', plugins_url( 'javascript/main_js.js', __FILE__ ));
+		wp_enqueue_script('eric_plugin_script', plugins_url( '../javascript/main_js.js', __FILE__ ));
 		insert_quote();
 		update_quote_table();
 		update_edit_quote();
