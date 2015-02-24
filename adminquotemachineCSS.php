@@ -10,12 +10,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 * Plugin URI: http://www.mylocalwebstop.com/
 * Text Domain: my-plugin
 * Domain Path: /languages
-*
 * @author Eric Rathmann
-
 * @version 2.0
-
 */
+
 include "php/shortcode.php";
 include "quotemachineinstallCSS.php";
 include "php/settingsquotemachineCSS.php";
@@ -32,13 +30,12 @@ add_shortcode('group_quote', 'group_quote_func');
   * Adds the admin file to the side and allows rest of the plugin to work
   *
   * @since 2.0
-
 */
 function i_know_hooks()
 {
 	if (function_exists('add_menu_page'))
 	{
-         add_menu_page('Erics New Quote Machine', 'Erics New Quote Machine', 'moderate_comments', __FILE__, 'new_quote_machine');
+		add_menu_page('Erics New Quote Machine', 'Erics New Quote Machine', 'moderate_comments', __FILE__, 'new_quote_machine');
 	}
 }
 
@@ -47,11 +44,9 @@ function i_know_hooks()
   * This function loads the plugin domain so that it can be used in translation.
   *
   * @since 2.0
- */
+  */
 function my_plugin_load_plugin_textdomain()
 {
-        load_plugin_textdomain( 'my-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
+	load_plugin_textdomain( 'my-plugin', FALSE, basename( dirname( __FILE__ ) ) . '/languages/' );
 }
-
-
 ?>
