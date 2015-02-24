@@ -1,15 +1,11 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) exit;
 /**
- * 
- *
-
- * @package     EQM
- * @copyright   Copyright (c) 2014, Eric Rathmann
- * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since       2.0
-
-*/
+  * @package     EQM
+  * @copyright   Copyright (c) 2014, Eric Rathmann
+  * @license     http://opensource.org/licenses/gpl-2.0.php GNU Public License
+  * @since       2.0
+  */
 
 /**
   * Creates the table to be used in this plugin.
@@ -17,15 +13,10 @@ if ( ! defined( 'ABSPATH' ) ) exit;
   * Creates the table with three columns. 
   *
   * @since 2.0
-
-*/
-
-
-function activate_eric_quote_next ()
+  */
+function activate_eric_quote_next()
 {
-    global $wpdb;
-
-
+	global $wpdb;
     $table_name = $wpdb->prefix . "erictable"; 
     $sql = "CREATE TABLE $table_name (
     quote_id mediumint(9) NOT NULL AUTO_INCREMENT,
@@ -35,18 +26,8 @@ function activate_eric_quote_next ()
     UNIQUE KEY quote_id (quote_id)
     )";
 
-
     require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 
     dbDelta( $sql );
 }
-
-
-
-
-
-
-
-
-
 ?>
