@@ -16,5 +16,5 @@
 function show_popup(id)
 {
 	var $j = jQuery.noConflict();
-	$j( "#dialog".id ).dialog();
+	$j( "#dialog"+id ).dialog();
 }
