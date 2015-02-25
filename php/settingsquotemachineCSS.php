@@ -18,11 +18,18 @@ function new_quote_machine()
 {
 	if ( current_user_can('moderate_comments') )
 	{
-		wp_enqueue_script('eric_plugin_script', plugins_url( 'javascript/main_js.js', __FILE__ ));
+		?>
+		<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/redmond/jquery-ui.css" rel="stylesheet" />
+		<?php
+		wp_enqueue_script( 'jquery' );
+		wp_enqueue_script( 'jquery-ui-core' );
+		wp_enqueue_script( 'jquery-ui-dialog' );
+		wp_enqueue_script( 'jquery-ui-button' );
+		wp_enqueue_script('eric_plugin_script', plugins_url( '../javascript/main_js.js', __FILE__ ));
 		insert_quote();
 		update_quote_table();
-		load_quote();
 		update_edit_quote();
+		load_quote();
 	}
 }
 
@@ -138,7 +145,7 @@ function load_quote()
 					<?php wp_nonce_field('nonce_check','nonce_field'); ?>
 				</form>
 			</td>
-			<td><button onclick="show_popup(<?php echo $value["quote_id"]; ?>">Edit</button></td>
+			<td><button onclick="show_popup(<?php echo $value["quote_id"]; ?>);">Edit</button></td>
 			<td><?php echo esc_html($value["quote"]);?></td>
 			<td><?php echo esc_html($value["author"]); ?></td>
 			<div style =" display:none;" id="dialog<?php echo$value["quote_id"]; ?>" title=<?php _e('Edit Quote','my-plugin');?>>
