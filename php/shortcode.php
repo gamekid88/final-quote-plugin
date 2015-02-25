@@ -21,7 +21,7 @@ function table_quote_func($atts)
 	$table_name = $wpdb->prefix."erictable";
 	
 	$eric_quote_array = $wpdb->get_results("SELECT * FROM $table_name WHERE deleted = 0","ARRAY_A");
-	
+	$short_display_quote = '';
 	foreach ($eric_quote_array as $value) 
 	{ 	
 		$short_display_quote.="<p class='eric_container'>" .esc_html($value["quote"]) . "<span class= 'eric_author'>" .esc_html($value["author"]). "</span>"."</p>";			
@@ -46,7 +46,7 @@ function random_quote_func($atts)
 
 	$eric_random_quote_array = $wpdb->get_row("SELECT * FROM $table_name WHERE deleted = 0 ORDER BY Rand() LIMIT 1","ARRAY_A");
 
-	$short_random_quote.="<p class='eric_container'>" .esc_html($eric_random_quote_array["quote"]) . "<span class= 'eric_author'>" .esc_html($eric_random_quote_array["author"]). "</span>"."</p>";
+	$short_random_quote="<p class='eric_container'>" .esc_html($eric_random_quote_array["quote"]) . "<span class= 'eric_author'>" .esc_html($eric_random_quote_array["author"]). "</span>"."</p>";
 	return $short_random_quote;
 }//end random_quote_func
 
@@ -71,8 +71,8 @@ function group_quote_func($atts)
 	$group_name_var = sanatize_text_field($group_name);
 	
 	
-	$eric_group_quote_array = $wpdb->get_results($wpdb->prepare("SELECT * FROM  WHERE $table_name author=%s", $group_name_var));
-	
+	$eric_group_quote_array = $wpdb->get_results($wpdb->prepare("SELECT * FROM  WHERE $table_name author=%s", $group_name_var), "ARRAY_A");
+	$short_group_quote = '';
 	foreach ($eric_group_quote_array as $value)
 	{
 		$short_group_quote.="<p class='eric_container'>" .esc_html($value["quote"]) . "<span class= 'eric_author'>" .esc_html($value["author"]). "</span>"."</p>";
